@@ -1,1 +1,80 @@
-<p>control-flow works!</p>
+<h3>Control flows: If, if else, for etc</h3>
+<div>
+  <div>
+    <button class="btn btn-primary" (click)="onShowPara()">Show Para</button>
+    <button class="btn btn-danger" (click)="onHidePara()">Hide Para</button>
+  </div>
+
+  <!-- This if else statement will complete remove the element the dom if the condition is false. -->
+  @if (isParaVisible) {
+  <p>This is a simple paragraph</p>
+  } @else {
+  <h3>Para is currently hidden.</h3>
+  }
+</div>
+
+<div>
+  <p>Print month name</p>
+  <input type="text" [(ngModel)]="monthStartsName">
+
+  @if (monthStartsName() === 'Dec') {
+  <p>December</p>
+  } @else if (monthStartsName() === 'Jan') {
+  <p>January</p>
+  } @else if (monthStartsName() === "Feb") {
+  <p>Februrary</p>
+  } @else if (monthStartsName() === "Mar") {
+  <p>March</p>
+  } @else{
+  <p>Month name not matched</p>
+  }
+</div>
+
+<div>
+  <p>Popular Cities:</p>
+  <ul>
+    @for (item of cityNames; track $index) {
+    <li>{{item}}</li>
+    }
+  </ul>
+</div>
+
+<div>
+  <p>Choose City</p>
+  <select name="city" id="city">
+    @for (item of cityNames; track $index) {
+    <option value="{{item}}">{{item}}</option>
+    }
+  </select>
+</div>
+
+<div>
+  <p>Player List</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mobile</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of playerLists; track $index) {
+      <tr>
+        <td>{{$index + 1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <td>
+          @if (item.isActive) {
+            <p>Active<p>
+          } @else {
+            <p>De-active</p>
+          }
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
