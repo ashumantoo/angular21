@@ -1,12 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Admin } from './components/admin/admin';
+import { User } from './components/user/user';
+import { DataBinding } from './components/data-binding/data-binding';
+import { SignalExp } from './components/signal-exp/signal-exp';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Admin, User, DataBinding, SignalExp],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('angaulr21');
+  protected readonly title = signal('angular21');
 }

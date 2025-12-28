@@ -1,0 +1,39 @@
+<table style="width: 100%;">
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{productPrice}}, {{productSize}}</td>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="{{inputType}}" max="{{priceMaxLength}}" [min]="nameMinChar">
+    </td>
+    <td>
+      <select name="city" id="city" (change)="onCityChange()">
+        <option value="Bangalore">Bangalore</option>
+        <option value="Pune">Pune</option>
+        <option value="Patna">Patna</option>
+      </select>
+    </td>
+    <td>
+      {{productName}}
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="text" value="{{productName}}">
+    </td>
+    <td>
+      <button (click)="getGreetMessage()">Click Me</button>
+    </td>
+    <td>
+      <button (click)="changeProductName()">Update Product name</button>
+    </td>
+
+    <td>
+      <p>Type to update the Product name</p>
+      <input type="text" [(ngModel)]="productName">
+    </td>
+  </tr>
+</table>
