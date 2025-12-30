@@ -1,0 +1,322 @@
+<div class="container mt-4">
+  <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Add New Student</h4>
+      </div>
+      <div class="card-body">
+        <!-- Basic Information Section -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">Basic Information</legend>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="firstName" class="form-label">First Name *</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="student.firstName"
+                #firstName="ngModel" required
+                [class.is-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)">
+              @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+              <div class="invalid-feedback">
+                @if (firstName.hasError('required')) {
+                <span>First Name is required</span>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="middleName" class="form-label">Middle Name</label>
+              <input type="text" class="form-control" id="middleName" name="middleName"
+                [(ngModel)]="student.middleName">
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="student.lastName">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="rollNumber" class="form-label">Roll Number *</label>
+              <input type="number" class="form-control" id="rollNumber" name="rollNumber"
+                [(ngModel)]="student.rollNumber" #rollNumber="ngModel" required
+                [class.is-invalid]="rollNumber.invalid && (rollNumber.dirty || rollNumber.touched)">
+              @if (rollNumber.invalid && (rollNumber.dirty || rollNumber.touched)) {
+              <div class="invalid-feedback">
+                @if (rollNumber.hasError('required')) {
+                <span>Roll Number is required</span>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="grade" class="form-label">Grade *</label>
+              <input type="number" class="form-control" id="grade" name="grade" [(ngModel)]="student.grade"
+                #grade="ngModel" required min="1" max="12"
+                [class.is-invalid]="grade.invalid && (grade.dirty || grade.touched)">
+              @if (grade.invalid && (grade.dirty || grade.touched)) {
+              <div class="invalid-feedback">
+                @if (grade.hasError('required')) {
+                <span>Grade is required</span>
+                }
+                @if (grade.hasError('min') || grade.hasError('max')) {
+                <span>Grade must be between 1 and 12</span>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="section" class="form-label">Section *</label>
+              <input type="text" class="form-control" id="section" name="section" [(ngModel)]="student.section"
+                #section="ngModel" required maxlength="1"
+                [class.is-invalid]="section.invalid && (section.dirty || section.touched)">
+              @if (section.invalid && (section.dirty || section.touched)) {
+              <div class="invalid-feedback">
+                @if (section.hasError('required')) {
+                <span>Section is required</span>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="gender" class="form-label">Gender *</label>
+              <select class="form-select" id="gender" name="gender" [(ngModel)]="student.gender" #gender="ngModel"
+                required [class.is-invalid]="gender.invalid && (gender.dirty || gender.touched)">
+                <option value="">Select Gender</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+              </select>
+              @if (gender.invalid && (gender.dirty || gender.touched)) {
+              <div class="invalid-feedback">
+                @if (gender.hasError('required')) {
+                <span>Gender is required</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="dob" class="form-label">Date of Birth *</label>
+              <input type="date" class="form-control" id="dob" name="dob" [(ngModel)]="student.dob" #dob="ngModel"
+                required [class.is-invalid]="dob.invalid && (dob.dirty || dob.touched)">
+              @if (dob.invalid && (dob.dirty || dob.touched)) {
+              <div class="invalid-feedback">
+                @if (dob.hasError('required')) {
+                <span>Date of Birth is required</span>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="student.email"
+                #email="ngModel" required email [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+              @if (email.invalid && (email.dirty || email.touched)) {
+              <div class="invalid-feedback">
+                @if (email.hasError('required')) {
+                <span>Email is required</span>
+                }
+                @if (email.hasError('email')) {
+                <span>Please enter a valid email address</span>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="mobile" class="form-label">Mobile Number</label>
+              <input type="tel" class="form-control" id="mobile" name="mobile" [(ngModel)]="student.mobile"
+                pattern="[0-9]{10}">
+              <small class="form-text text-muted">Format: 10 digits without spaces</small>
+            </div>
+
+            <div class="col-md-4 mb-3 form-check mt-4 pt-3">
+              <input type="checkbox" class="form-check-input" id="isHandicapped" name="isHandicapped"
+                [(ngModel)]="student.isHandicapped">
+              <label class="form-check-label" for="isHandicapped">Are you physically challenged?</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Guardian Details Section -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">Guardian Details</legend>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="gardianFullName" class="form-label">Guardian Full Name *</label>
+              <input type="text" class="form-control" id="gardianFullName" name="gardianFullName"
+                [(ngModel)]="student.gardianDetails.gardianFullName" #gardianFullName="ngModel" required
+                [class.is-invalid]="gardianFullName.invalid && (gardianFullName.dirty || gardianFullName.touched)">
+              @if (gardianFullName.invalid && (gardianFullName.dirty || gardianFullName.touched)) {
+              <div class="invalid-feedback">
+                @if (gardianFullName.hasError('required')) {
+                <span>Guardian Full Name is required</span>
+                }
+              </div>
+              }
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="relationWithGardian" class="form-label">Relation with Guardian *</label>
+              <select class="form-select" id="relationWithGardian" name="relationWithGardian"
+                [(ngModel)]="student.gardianDetails.relationWithGardian" #relationWithGardian="ngModel" required
+                [class.is-invalid]="relationWithGardian.invalid && (relationWithGardian.dirty || relationWithGardian.touched)">
+
+                @for (item of relationShipNames; track $index) {
+                <option value="{{item}}">{{item | titlecase}}</option>
+                }
+              </select>
+              @if (relationWithGardian.invalid && (relationWithGardian.dirty || relationWithGardian.touched)) {
+              <div class="invalid-feedback">
+                @if (relationWithGardian.hasError('required')) {
+                <span>Relation with Guardian is required</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="gardianEmail" class="form-label">Guardian Email *</label>
+              <input type="email" class="form-control" id="gardianEmail" name="gardianEmail"
+                [(ngModel)]="student.gardianDetails.gardianEmail" #gardianEmail="ngModel" required email
+                [class.is-invalid]="gardianEmail.invalid && (gardianEmail.dirty || gardianEmail.touched)">
+              @if (gardianEmail.invalid && (gardianEmail.dirty || gardianEmail.touched)) {
+              <div class="invalid-feedback">
+                @if (gardianEmail.hasError('required')) {
+                <span>Guardian Email is required</span>
+                }
+                @if (gardianEmail.hasError('email')) {
+                <span>Please enter a valid email address</span>
+                }
+              </div>
+              }
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="gardianMobile" class="form-label">Guardian Mobile *</label>
+              <input type="tel" class="form-control" id="gardianMobile" name="gardianMobile"
+                [(ngModel)]="student.gardianDetails.gardianMobile" #gardianMobile="ngModel" required pattern="[0-9]{10}"
+                [class.is-invalid]="gardianMobile.invalid && (gardianMobile.dirty || gardianMobile.touched)">
+              @if (gardianMobile.invalid && (gardianMobile.dirty || gardianMobile.touched)) {
+              <div class="invalid-feedback">
+                @if (gardianMobile.hasError('required')) {
+                <span>Guardian Mobile is required</span>
+                }
+                @if (gardianMobile.hasError('pattern')) {
+                <span>Please enter a valid 10-digit mobile number</span>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Address Section -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">Address</legend>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="street" class="form-label">Street</label>
+              <input type="text" class="form-control" id="street" name="street" [(ngModel)]="student.address.street">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" name="city" [(ngModel)]="student.address.city">
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="state" class="form-label">State</label>
+              <input type="text" class="form-control" id="state" name="state" [(ngModel)]="student.address.state">
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="country" name="country" [(ngModel)]="student.address.country">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="zipcode" class="form-label">Zipcode</label>
+              <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="student.address.zipcode">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- School Details Section -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">School Details</legend>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="schoolName" class="form-label">School Name</label>
+              <input type="text" class="form-control" id="schoolName" name="schoolName"
+                [(ngModel)]="student.schoolDetails.schoolName">
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="schoolEmail" class="form-label">School Email</label>
+              <input type="email" class="form-control" id="schoolEmail" name="schoolEmail"
+                [(ngModel)]="student.schoolDetails.schoolEmail" email>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="schoolMobile" class="form-label">School Mobile</label>
+              <input type="tel" class="form-control" id="schoolMobile" name="schoolMobile"
+                [(ngModel)]="student.schoolDetails.schoolMobile" pattern="[0-9]{10}">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Submit Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-secondary" (click)="onReset(studentForm)">
+            Reset Form
+          </button>
+          <div>
+            <button type="submit" class="btn btn-success me-2">
+              Submit
+            </button>
+            <button type="button" class="btn btn-outline-primary" (click)="previewData()">
+              Preview Data
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Preview Modal -->
+  @if (previewStudentData) {
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Preview Student Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <pre>{{ previewStudentData | json }}</pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
